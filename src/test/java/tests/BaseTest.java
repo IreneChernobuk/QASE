@@ -1,32 +1,32 @@
 package tests;
 
-import factorymanager.DriverFactory;
-import factorymanager.DriverManager;
-import factorymanager.DriverType;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
+import utils.TestListeners;
 
+@Listeners(TestListeners.class)
 public class BaseTest {
-    public WebDriver driver;
-    public DriverManager driverManager;
+    protected static ThreadLocal<WebDriver> threadLocalDriver = new ThreadLocal<>();
+    WebDriver driver;
 
     @BeforeMethod
     public void setUp() {
-        DriverFactory driverFactory = new DriverFactory();
-        driverManager = driverFactory.getManager(DriverType.CHROME);
-        driverManager.createDriver();
-        driverManager.setTimeout();
-        driverManager.startMaximize();
-        driver = driverManager.getDriver();
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        threadLocalDriver.set(driver);
     }
 
-    public WebDriver getDriver() {
-        return driver;
+    public static WebDriver getDriver() {
+        return threadLocalDriver.get();
     }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        driver.quit();
+        getDriver().quit();
+        threadLocalDriver.remove();
     }
 }
