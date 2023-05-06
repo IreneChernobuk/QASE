@@ -4,19 +4,24 @@ import io.qameta.allure.*;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.ProjectPage;
 import utils.RetryAnalyzer;
+
 @Feature("Registration")
 @Story("User Registration")
 public class LoginTest extends BaseTest {
 
     private static final Logger LOGGER = LogManager.getLogger(LoginTest.class.getName());
+
     @Test(retryAnalyzer = RetryAnalyzer.class, invocationCount = 2, threadPoolSize = 2)
+    @Parameters({"browser"})
     @Description("Log in to website qase.io")
     @Severity(SeverityLevel.BLOCKER)
-    public void loginTest() {
+    public void loginTest(@Optional("firefox") String browser) {
         LoginPage loginPage = new LoginPage(getDriver());
         LOGGER.info(String.format("Page %s initialized", LoginPage.class.getName()));
         loginPage.openLoginPage();

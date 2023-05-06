@@ -8,23 +8,25 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
     private By EMAIL_INPUT = By.id("inputEmail");
     private By PASSWORD_INPUT = By.id("inputPassword");
     private By LOGIN_BUTTON = By.id("btnLogin");
 
     private static final Logger LOGGER = LogManager.getLogger(LoginPage.class.getName());
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
     @Step("Open login page")
-    public void openLoginPage(){
+    public void openLoginPage() {
         LOGGER.debug(String.format("Attempt to open: %s", Urls.QASE_LIGIN));
         driver.get(Urls.QASE_LIGIN);
     }
+
     @Step("input email and password")
-    public void clickLoginButton(){
+    public void clickLoginButton() {
         LOGGER.debug(String.format("Input EMAIL"));
         driver.findElement(EMAIL_INPUT).sendKeys(Credentials.EMAIL);
         LOGGER.debug(String.format("Input PASSWORD"));
