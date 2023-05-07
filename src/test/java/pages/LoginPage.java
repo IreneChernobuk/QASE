@@ -7,11 +7,13 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utils.FakerMessageGenerator;
 
 public class LoginPage extends BasePage {
     private By EMAIL_INPUT = By.id("inputEmail");
     private By PASSWORD_INPUT = By.id("inputPassword");
     private By LOGIN_BUTTON = By.id("btnLogin");
+    private By MESSAGE_ERROR = By.xpath("//div[@data-qase-test = 'login-error']");
 
     private static final Logger LOGGER = LogManager.getLogger(LoginPage.class.getName());
 
@@ -33,5 +35,18 @@ public class LoginPage extends BasePage {
         driver.findElement(PASSWORD_INPUT).sendKeys(Credentials.PASSWORD);
         LOGGER.debug(String.format("Attempt to click element: %s", LOGIN_BUTTON));
         driver.findElement(LOGIN_BUTTON).click();
+    }
+    @Step("input email and password")
+    public void clickLoginButtonWithRandomData() {
+        LOGGER.debug(String.format("Input EMAIL"));
+        driver.findElement(EMAIL_INPUT).sendKeys(FakerMessageGenerator.generateEmail());
+        LOGGER.debug(String.format("Input PASSWORD"));
+        driver.findElement(PASSWORD_INPUT).sendKeys(FakerMessageGenerator.generatePassword());
+        LOGGER.debug(String.format("Attempt to click element: %s", LOGIN_BUTTON));
+        driver.findElement(LOGIN_BUTTON).click();
+    }
+    public boolean isErrorMessageOnDisplayed() {
+        LOGGER.debug(String.format("Check the error message is displayed"));
+        return driver.findElement(MESSAGE_ERROR).isDisplayed();
     }
 }

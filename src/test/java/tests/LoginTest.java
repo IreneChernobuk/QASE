@@ -33,4 +33,18 @@ public class LoginTest extends BaseTest {
         LOGGER.info("Check that the button 'Create new project' is displayed");
         Assert.assertTrue(projectPage.isCreateNewProjectButtonOnDisplayed(), "authorization failed");
     }
+
+    @Description("Log in to website qase.io")
+    @Severity(SeverityLevel.BLOCKER)
+    @Test
+    public void LoginRandomDataTest() {
+        LoginPage loginPage = new LoginPage(getDriver());
+        LOGGER.info(String.format("Page %s initialized", LoginPage.class.getName()));
+        loginPage.openLoginPage();
+        LOGGER.info(String.format("Page %s opened", LoginPage.class.getName()));
+        LOGGER.info("Input EMAIL and PASSWORD");
+        loginPage.clickLoginButtonWithRandomData();
+        LOGGER.info("Check the error message is displayed");
+        Assert.assertTrue(loginPage.isErrorMessageOnDisplayed(), "The user is logged in");
+    }
 }
