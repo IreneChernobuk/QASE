@@ -1,21 +1,33 @@
 package steps;
 
+import factorymanager.DriverFactory;
+import factorymanager.DriverManager;
+import factorymanager.DriverType;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import pages.LoginPage;
 import pages.ProjectPage;
 
 public class LoginSteps {
     WebDriver driver;
+
+    @Before
+    public void setUp() {
+        DriverFactory driverFactory = new DriverFactory();
+        DriverManager driverManager = driverFactory.getManager(DriverType.FIREFOX);
+        driverManager.createDriver();
+        driverManager.setTimeout();
+        driverManager.startMaximize();
+        driver = driverManager.getDriver();
+    }
+
     @Given("Login page opened")
     public void loginPageOpened() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
         LoginPage loginPage = new LoginPage(driver);
         loginPage.openLoginPage();
     }
@@ -30,6 +42,10 @@ public class LoginSteps {
     public void buttonCreateNewProjectOnPage() {
         ProjectPage projectPage = new ProjectPage(driver);
         Assert.assertTrue(projectPage.isCreateNewProjectButtonOnDisplayed());
+    }
+
+    @After
+    public void tearDown() {
         driver.quit();
     }
 }

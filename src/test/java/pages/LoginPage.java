@@ -14,7 +14,6 @@ public class LoginPage extends BasePage {
     private By PASSWORD_INPUT = By.id("inputPassword");
     private By LOGIN_BUTTON = By.id("btnLogin");
     private By MESSAGE_ERROR = By.xpath("//div[@data-qase-test = 'login-error']");
-
     private static final Logger LOGGER = LogManager.getLogger(LoginPage.class.getName());
 
     public LoginPage(WebDriver driver) {
@@ -23,30 +22,30 @@ public class LoginPage extends BasePage {
 
     @Step("Open login page")
     public void openLoginPage() {
-        LOGGER.debug(String.format("Attempt to open: %s", Urls.QASE_LIGIN));
-        driver.get(Urls.QASE_LIGIN);
+        LOGGER.debug(String.format("Attempt to open: %s", Urls.QASE_LOGIN));
+        driver.get(Urls.QASE_LOGIN);
     }
 
     @Step("input email and password")
     public void clickLoginButton() {
-        LOGGER.debug(String.format("Input EMAIL"));
+        LOGGER.info("Input EMAIL");
         driver.findElement(EMAIL_INPUT).sendKeys(Credentials.EMAIL);
-        LOGGER.debug(String.format("Input PASSWORD"));
         driver.findElement(PASSWORD_INPUT).sendKeys(Credentials.PASSWORD);
         LOGGER.debug(String.format("Attempt to click element: %s", LOGIN_BUTTON));
         driver.findElement(LOGIN_BUTTON).click();
     }
+
     @Step("input email and password")
     public void clickLoginButtonWithRandomData() {
-        LOGGER.debug(String.format("Input EMAIL"));
+        LOGGER.info("Input EMAIL");
         driver.findElement(EMAIL_INPUT).sendKeys(FakerMessageGenerator.generateEmail());
-        LOGGER.debug(String.format("Input PASSWORD"));
         driver.findElement(PASSWORD_INPUT).sendKeys(FakerMessageGenerator.generatePassword());
         LOGGER.debug(String.format("Attempt to click element: %s", LOGIN_BUTTON));
         driver.findElement(LOGIN_BUTTON).click();
     }
+
     public boolean isErrorMessageOnDisplayed() {
-        LOGGER.debug(String.format("Check the error message is displayed"));
+        LOGGER.debug("Check the error message is displayed");
         return driver.findElement(MESSAGE_ERROR).isDisplayed();
     }
 }
