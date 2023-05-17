@@ -17,7 +17,7 @@ public class BaseTest {
     @BeforeMethod
     public void setUp() {
         DriverFactory driverFactory = new DriverFactory();
-        DriverManager driverManager = driverFactory.getManager(DriverType.FIREFOX);
+        DriverManager driverManager = driverFactory.getManager(DriverType.CHROME);
         driverManager.createDriver();
         driverManager.setTimeout();
         driverManager.startMaximize();
