@@ -5,5 +5,10 @@
         <classes>
             <class name="tests.LoginTest"></class>
         </classes>
-    </test> <!-- Test -->
+    </test>
+    <test name="ApiTest">
+        <classes>
+            <class name="apitests.ApiTest"></class>
+        </classes>
+    </test>
 </suite>

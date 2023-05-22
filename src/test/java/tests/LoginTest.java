@@ -34,9 +34,9 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(projectPage.isCreateNewProjectButtonOnDisplayed(), "authorization failed");
     }
 
-    @Description("Log in to website qase.io")
     @Severity(SeverityLevel.BLOCKER)
     @Test
+    @Description("Log in to website qase.io")
     public void LoginRandomDataTest() {
         LoginPage loginPage = new LoginPage(getDriver());
         LOGGER.info(String.format("Page %s initialized", LoginPage.class.getName()));
