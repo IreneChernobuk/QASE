@@ -1,15 +1,17 @@
 package tests;
 
+import constants.Credentials;
+import helpers.LoginHelper;
 import io.qameta.allure.*;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import pages.AllProjectsPage;
 import pages.LoginPage;
-import pages.ProjectPage;
+import utils.FakerMessageGenerator;
 import utils.RetryAnalyzer;
+
 
 @Feature("Registration")
 @Story("User Registration")
@@ -22,14 +24,9 @@ public class LoginTest extends BaseTest {
     @Description("Log in to website qase.io")
     @Severity(SeverityLevel.BLOCKER)
     public void loginTest(@Optional("firefox") String browser) {
-        LoginPage loginPage = new LoginPage(getDriver());
-        LOGGER.info(String.format("Page %s initialized", LoginPage.class.getName()));
-        loginPage.openLoginPage();
-        LOGGER.info(String.format("Page %s opened", LoginPage.class.getName()));
-        LOGGER.info("Input EMAIL and PASSWORD");
-        loginPage.clickLoginButton();
-        ProjectPage projectPage = new ProjectPage(getDriver());
-        LOGGER.info(String.format("Page %s initialized", ProjectPage.class.getName()));
+        LoginHelper.login(getDriver());
+        AllProjectsPage projectPage = new AllProjectsPage(getDriver());
+        LOGGER.info(String.format("Page %s initialized", AllProjectsPage.class.getName()));
         LOGGER.info("Check that the button 'Create new project' is displayed");
         Assert.assertTrue(projectPage.isCreateNewProjectButtonOnDisplayed(), "authorization failed");
     }
@@ -38,13 +35,8 @@ public class LoginTest extends BaseTest {
     @Test
     @Description("Log in to website qase.io")
     public void LoginRandomDataTest() {
+        LoginHelper.login(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());
-        LOGGER.info(String.format("Page %s initialized", LoginPage.class.getName()));
-        loginPage.openLoginPage();
-        LOGGER.info(String.format("Page %s opened", LoginPage.class.getName()));
-        LOGGER.info("Input EMAIL and PASSWORD");
-        loginPage.clickLoginButtonWithRandomData();
-        LOGGER.info("Check the error message is displayed");
         Assert.assertTrue(loginPage.isErrorMessageOnDisplayed(), "The user is logged in");
     }
 }

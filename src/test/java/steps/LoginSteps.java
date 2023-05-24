@@ -1,5 +1,6 @@
 package steps;
 
+import constants.Credentials;
 import factorymanager.DriverFactory;
 import factorymanager.DriverManager;
 import factorymanager.DriverType;
@@ -10,8 +11,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import pages.AllProjectsPage;
 import pages.LoginPage;
-import pages.ProjectPage;
 
 public class LoginSteps {
     WebDriver driver;
@@ -35,12 +36,12 @@ public class LoginSteps {
     @When("Input EMAIL and PASSWORD and click Login button")
     public void inputEMAILAndPASSWORDAndClickLoginButton() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.clickLoginButton();
+        loginPage.clickLoginButton(Credentials.EMAIL, Credentials.PASSWORD);
     }
 
     @Then("Button Create new project  on page")
     public void buttonCreateNewProjectOnPage() {
-        ProjectPage projectPage = new ProjectPage(driver);
+        AllProjectsPage projectPage = new AllProjectsPage(driver);
         Assert.assertTrue(projectPage.isCreateNewProjectButtonOnDisplayed());
     }
 
