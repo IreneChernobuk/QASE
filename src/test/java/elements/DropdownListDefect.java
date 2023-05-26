@@ -3,13 +3,13 @@ package elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class DropdownList {
+public class DropdownListDefect {
     private WebDriver driver;
     private String labelText;
-    private static final String LIST_XPATH = "//label[text()='%s']/following::div[1]";
-    private static final String OPTION_XPATH = "//div[@id = 'modals']//div[text() = '%s']";
+    private static final String LIST_XPATH = "//label[contains(text(), '%s')]//following-sibling::div/span";
+    private static final String OPTION_XPATH = "//div[@id = 'layout']/div[last()]//div[contains(text(), '%s')]";
 
-    public DropdownList(WebDriver driver, String labelText) {
+    public DropdownListDefect(WebDriver driver, String labelText) {
         this.driver = driver;
         this.labelText = labelText;
     }

@@ -5,6 +5,6 @@ import java.util.List;
 
 public class AccessTypeProject {
     public static List<String> getAccessType() {
-        return Arrays.asList("Private", "Public");
+        return Arrays.asList("private", "public");
     }
 }

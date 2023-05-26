@@ -1,6 +1,7 @@
 package pages;
 
-import modal.NewProjectModal;
+import io.qameta.allure.Step;
+import pages.modal.NewProjectModal;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -19,24 +20,27 @@ public class SettingsProjectPage extends BasePage {
         super(driver);
     }
 
+    @Step("Clear registration form for project")
     public void clearRegistrationForm() {
-        LOGGER.info("Clear PROJECT_NAME");
+        LOGGER.info("Clear 'PROJECT_NAME'");
         driver.findElement(PROJECT_NAME).clear();
-        LOGGER.info("Clear PROJECT_CODE");
+        LOGGER.info("Clear 'PROJECT_CODE'");
         driver.findElement(PROJECT_CODE).clear();
-        LOGGER.info("Clear DESCRIPTION");
+        LOGGER.info("Clear 'DESCRIPTION'");
         driver.findElement(DESCRIPTION).clear();
     }
 
+    @Step("Refill registration form for project")
     public void refillRegistrationForm(NewProjectModal projectModel) {
-        LOGGER.info("Input PROJECT_NAME");
+        LOGGER.info("Input 'PROJECT_NAME'");
         driver.findElement(PROJECT_NAME).sendKeys(projectModel.getProjectName());
-        LOGGER.info("Input PROJECT_CODE");
+        LOGGER.info("Input 'PROJECT_CODE'");
         driver.findElement(PROJECT_CODE).sendKeys(projectModel.getProjectCode());
-        LOGGER.info("Input DESCRIPTION");
+        LOGGER.info("Input 'DESCRIPTION'");
         driver.findElement(DESCRIPTION).sendKeys(projectModel.getDescription());
     }
 
+    @Step("Choose project access type for project")
     public void chooseProjectAccessType(String accessType) {
         String typeAccessFinalXpath = String.format(RADIO_XPATH, accessType);
         LOGGER.debug(String.format("Creating new Xpath '%s' for '%s' access type", typeAccessFinalXpath, accessType));
@@ -44,11 +48,13 @@ public class SettingsProjectPage extends BasePage {
         driver.findElement(By.xpath(typeAccessFinalXpath)).click();
     }
 
+    @Step("Save project with renewed date")
     public void clickUpdateSettingsButton() {
         LOGGER.debug(String.format("Attempt to click element: %s", UPDATE_SETTINGS_BUTTON));
         driver.findElement(UPDATE_SETTINGS_BUTTON).click();
     }
 
+    @Step("Check that the alert with successful message is displayed")
     public boolean isAlertOnDisplayed() {
         LOGGER.info("Check that alert with successful message on displayed");
         return driver.findElement(ALERT).isDisplayed();

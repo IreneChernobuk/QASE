@@ -1,6 +1,6 @@
 package data;
 
-import modal.SuiteModal;
+import pages.modal.SuiteModal;
 import utils.FakerMessageGenerator;
 
 public class PrepareSuiteData {

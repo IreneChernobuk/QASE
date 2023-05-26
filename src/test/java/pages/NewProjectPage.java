@@ -1,10 +1,12 @@
 package pages;
 
-import modal.NewProjectModal;
+import io.qameta.allure.Step;
+import pages.modal.NewProjectModal;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class NewProjectPage extends BasePage {
 
@@ -18,12 +20,14 @@ public class NewProjectPage extends BasePage {
     public NewProjectPage(WebDriver driver) {
         super(driver);
     }
-
+    @Step("Fill new project form")
     public void fillNewProjectForm(NewProjectModal projectModel) {
-        LOGGER.info("Input PROJECT_NAME");
+        LOGGER.info("Input 'PROJECT_NAME'");
         driver.findElement(PROJECT_NAME).sendKeys(projectModel.getProjectName());
-        LOGGER.info("Input PROJECT_CODE");
-        driver.findElement(PROJECT_CODE).sendKeys(projectModel.getProjectCode());
+        LOGGER.info("Input 'PROJECT_CODE'");
+        WebElement code = driver.findElement(PROJECT_CODE);
+        code.clear();
+        code.sendKeys(projectModel.getProjectCode());
         LOGGER.info("Input DESCRIPTION");
         driver.findElement(DESCRIPTION).sendKeys(projectModel.getDescription());
         LOGGER.info("Input the type of access for the project");

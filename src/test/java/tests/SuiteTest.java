@@ -3,7 +3,7 @@ package tests;
 import constants.ProjectName;
 import data.PrepareSuiteData;
 import helpers.LoginHelper;
-import modal.SuiteModal;
+import pages.modal.SuiteModal;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -12,8 +12,9 @@ import pages.*;
 
 public class SuiteTest extends BaseTest {
     private static final Logger LOGGER = LogManager.getLogger(SuiteTest.class.getName());
+
     @Test
-    public void createNewTestSuiteTest(){
+    public void createNewTestSuiteTest() {
         LoginHelper.login(getDriver());
         AllProjectsPage allProjectsPagePage = new AllProjectsPage(getDriver());
         LOGGER.info(String.format("Page %s initialized", AllProjectsPage.class.getName()));

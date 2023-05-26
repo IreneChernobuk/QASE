@@ -1,6 +1,6 @@
 package data;
 
-import modal.NewProjectModal;
+import pages.modal.NewProjectModal;
 import utils.FakerMessageGenerator;
 
 public class PrepareNewProjectData {

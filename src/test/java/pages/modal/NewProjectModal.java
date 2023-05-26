@@ -1,4 +1,4 @@
-package modal;
+package pages.modal;
 
 import lombok.Builder;
 import lombok.Data;

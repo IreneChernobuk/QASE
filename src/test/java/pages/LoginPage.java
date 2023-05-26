@@ -24,7 +24,7 @@ public class LoginPage extends BasePage {
         driver.get(Urls.QASE_LOGIN);
     }
 
-    @Step("input email and password")
+    @Step("Input email and password")
     public void clickLoginButton(String email, String password) {
         LOGGER.info("Input EMAIL");
         driver.findElement(EMAIL_INPUT).sendKeys(email);

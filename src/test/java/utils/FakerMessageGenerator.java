@@ -31,4 +31,7 @@ public class FakerMessageGenerator {
     public static Integer generatePriority() {
         return new Faker().number().numberBetween(1, 4);
     }
+    public static String generateName() {
+        return new Faker().name().fullName();
+    }
 }

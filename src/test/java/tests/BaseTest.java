@@ -6,9 +6,10 @@ import factorymanager.DriverType;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import utils.TestListeners;
+
+import java.util.concurrent.TimeUnit;
 
 @Listeners(TestListeners.class)
 public class BaseTest {
@@ -29,7 +30,9 @@ public class BaseTest {
     public static WebDriver getDriver() {
         return threadLocalDriver.get();
     }
-
+    public void removeImplicitlyWait(){
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+    }
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         getDriver().quit();

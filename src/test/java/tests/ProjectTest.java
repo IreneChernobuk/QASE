@@ -2,24 +2,19 @@ package tests;
 
 import data.PrepareNewProjectData;
 import helpers.LoginHelper;
-import modal.NewProjectModal;
+import pages.modal.NewProjectModal;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
 import utils.GenerateTestData;
 
-import java.sql.DriverManager;
-
 public class ProjectTest extends BaseTest {
 
     private static final Logger LOGGER = LogManager.getLogger(ProjectTest.class.getName());
+    String projectCode;
     String projectName;
-
-    // WebDriverWait wait = new WebDriverWait(getDriver(), 10);
 
     @Test
     public void createNewProjectTest() {
@@ -33,11 +28,12 @@ public class ProjectTest extends BaseTest {
         NewProjectModal newProjectModal = PrepareNewProjectData.getValidProjectData();
         newProjectPage.fillNewProjectForm(newProjectModal);
         LOGGER.info("filled project with following details:" + newProjectModal);
+        projectCode = newProjectModal.getProjectCode();
         projectName = newProjectModal.getProjectName();
-        LOGGER.info(String.format("received project name: '%s'", projectName));
+        LOGGER.info(String.format("received project name: '%s'", projectCode));
         ProjectPage project = new ProjectPage(getDriver());
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("user")));
         LOGGER.info(String.format("Form %s initialized", ProjectPage.class.getName()));
+        removeImplicitlyWait();
         Assert.assertTrue(project.receiveTitleProject().contains(newProjectModal.getProjectCode()), "project didn't create");
     }
 
@@ -63,7 +59,7 @@ public class ProjectTest extends BaseTest {
         LOGGER.info("chose the type of access for the project");
         settingsPage.clickUpdateSettingsButton();
         LOGGER.info("saved updated project data");
-        LOGGER.info("Check that alert is displayed");
-        Assert.assertTrue(settingsPage.isAlertOnDisplayed(),"project didn't update");
+        Assert.assertTrue(settingsPage.isAlertOnDisplayed(), "project didn't update");
+        LOGGER.info("Checked that alert is displayed");
     }
 }

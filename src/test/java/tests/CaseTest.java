@@ -3,7 +3,7 @@ package tests;
 import constants.ProjectName;
 import data.PrepareTestCaseData;
 import helpers.LoginHelper;
-import modal.TestCaseModal;
+import pages.modal.TestCaseModal;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.Assert;

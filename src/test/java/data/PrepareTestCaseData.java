@@ -1,6 +1,6 @@
 package data;
 
-import modal.TestCaseModal;
+import pages.modal.TestCaseModal;
 import utils.FakerMessageGenerator;
 import utils.GenerateTestData;
 

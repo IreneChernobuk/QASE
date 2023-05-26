@@ -142,7 +142,6 @@ browserVersion - 16)_ на облачном сервере SauseLabs.
    * Enter letters in the 'Action' field
    * Enter characters  in the 'Input data' field
    * Enter characters  in the 'Expected result' field
-   * Click picture and upload attachment
    * Click button 'Create'
 * Expected result: appeared title step on "Shared steps page"
 
@@ -192,6 +191,4 @@ browserVersion - 16)_ на облачном сервере SauseLabs.
    * Click button 'Settings' in the list on the left
    * Enter letters in the 'Workspace name' field
    * Click button 'Update setting'
-   * Choose type in 'Severity' field
-   * Click button 'Create defect'
 * Expected result: in the list on the left updated Workspace name
