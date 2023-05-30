@@ -2,6 +2,7 @@ package tests;
 
 import data.PrepareNewProjectData;
 import helpers.LoginHelper;
+import io.qameta.allure.*;
 import pages.modal.NewProjectModal;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -10,13 +11,19 @@ import org.testng.annotations.Test;
 import pages.*;
 import utils.GenerateTestData;
 
+@Epic("Creating new functionality")
+@Feature("Project")
+
 public class ProjectTest extends BaseTest {
 
     private static final Logger LOGGER = LogManager.getLogger(ProjectTest.class.getName());
     String projectCode;
     String projectName;
 
+    @Story("Creating new Project")
     @Test
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Creating new Project")
     public void createNewProjectTest() {
         LoginHelper.login(getDriver());
         AllProjectsPage allProjectsPagePage = new AllProjectsPage(getDriver());
@@ -37,7 +44,10 @@ public class ProjectTest extends BaseTest {
         Assert.assertTrue(project.receiveTitleProject().contains(newProjectModal.getProjectCode()), "project didn't create");
     }
 
+    @Story("Updating project")
     @Test(dependsOnMethods = "createNewProjectTest")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Updating project that was created in the test 'createNewProjectTest'")
     public void updateSettingsProjectTest() {
         LoginHelper.login(getDriver());
         AllProjectsPage allProjectsPagePage = new AllProjectsPage(getDriver());

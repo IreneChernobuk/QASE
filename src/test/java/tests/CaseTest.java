@@ -3,17 +3,23 @@ package tests;
 import constants.ProjectName;
 import data.PrepareTestCaseData;
 import helpers.LoginHelper;
+import io.qameta.allure.*;
 import pages.modal.TestCaseModal;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
+@Epic("Creating new functionality")
+@Feature("Test case")
+@Story("Creating new test case")
 
 public class CaseTest extends BaseTest {
     private static final Logger LOGGER = LogManager.getLogger(CaseTest.class.getName());
 
     @Test
+    @Description("Creating new test case in 'QASE Project'")
+    @Severity(SeverityLevel.CRITICAL)
     public void createNewTestCaseTest() {
         LoginHelper.login(getDriver());
         AllProjectsPage allProjectsPagePage = new AllProjectsPage(getDriver());

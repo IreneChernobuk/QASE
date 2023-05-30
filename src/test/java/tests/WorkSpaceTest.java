@@ -1,6 +1,7 @@
 package tests;
 
 import helpers.LoginHelper;
+import io.qameta.allure.*;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -8,10 +9,14 @@ import org.testng.annotations.Test;
 import pages.AllProjectsPage;
 import pages.WorkspacePage;
 
+@Feature("User")
+@Story("project data")
 public class WorkSpaceTest extends BaseTest {
     private static final Logger LOGGER = LogManager.getLogger(WorkSpaceTest.class.getName());
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Changing the workspace name")
     public void changeNameWorkspace() {
         LoginHelper.login(getDriver());
         AllProjectsPage allProjectsPagePage = new AllProjectsPage(getDriver());

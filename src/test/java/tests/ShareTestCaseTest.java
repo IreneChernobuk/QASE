@@ -2,7 +2,7 @@ package tests;
 
 import constants.ProjectName;
 import helpers.LoginHelper;
-import io.qameta.allure.Step;
+import io.qameta.allure.*;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -11,11 +11,16 @@ import pages.AllProjectsPage;
 import pages.ProjectPage;
 import pages.StepProjectPage;
 
+@Epic("Creating new functionality")
+@Feature("Test case")
+@Story("Creating share test case")
 public class ShareTestCaseTest extends BaseTest {
     private static final Logger LOGGER = LogManager.getLogger(ShareTestCaseTest.class.getName());
 
     @Test
-    public void createStareTestCaseTest() {
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Creating share test case")
+    public void createShareTestCaseTest() {
         LoginHelper.login(getDriver());
         AllProjectsPage allProjectsPagePage = new AllProjectsPage(getDriver());
         LOGGER.info(String.format("Page %s initialized", AllProjectsPage.class.getName()));

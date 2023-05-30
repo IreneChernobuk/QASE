@@ -3,6 +3,7 @@ package tests;
 import constants.ProjectName;
 import data.PrepareSuiteData;
 import helpers.LoginHelper;
+import io.qameta.allure.*;
 import pages.modal.SuiteModal;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -10,10 +11,15 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
 
+@Epic("Creating new functionality")
+@Feature("Test suite")
+@Story("Creating new test suite")
 public class SuiteTest extends BaseTest {
     private static final Logger LOGGER = LogManager.getLogger(SuiteTest.class.getName());
 
     @Test
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Creating new test suite in 'QASE Project'")
     public void createNewTestSuiteTest() {
         LoginHelper.login(getDriver());
         AllProjectsPage allProjectsPagePage = new AllProjectsPage(getDriver());

@@ -3,6 +3,7 @@ package tests;
 import constants.ProjectName;
 import data.PrepareDefectData;
 import helpers.LoginHelper;
+import io.qameta.allure.*;
 import pages.modal.DefectsModal;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -12,10 +13,15 @@ import pages.AllProjectsPage;
 import pages.DefectsPage;
 import pages.ProjectPage;
 
+@Epic("Creating new functionality")
+@Feature("Defect")
+@Story("Creating new Defect")
 public class DefectTest extends BaseTest {
     private static final Logger LOGGER = LogManager.getLogger(DefectTest.class.getName());
 
     @Test
+    @Description("Creating new defect in 'QASE Project'")
+    @Severity(SeverityLevel.CRITICAL)
     public void createDefectTest() {
         LoginHelper.login(getDriver());
         AllProjectsPage allProjectsPagePage = new AllProjectsPage(getDriver());

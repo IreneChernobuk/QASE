@@ -1,6 +1,5 @@
 package tests;
 
-import constants.Credentials;
 import helpers.LoginHelper;
 import io.qameta.allure.*;
 import org.apache.log4j.LogManager;
@@ -9,7 +8,6 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.AllProjectsPage;
 import pages.LoginPage;
-import utils.FakerMessageGenerator;
 import utils.RetryAnalyzer;
 
 
@@ -31,9 +29,9 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(projectPage.isCreateNewProjectButtonOnDisplayed(), "authorization failed");
     }
 
-    @Severity(SeverityLevel.BLOCKER)
     @Test
     @Description("Log in to website qase.io")
+    @Severity(SeverityLevel.BLOCKER)
     public void LoginRandomDataTest() {
         LoginHelper.login(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());
