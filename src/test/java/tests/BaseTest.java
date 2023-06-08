@@ -4,9 +4,7 @@ import factorymanager.DriverFactory;
 import factorymanager.DriverManager;
 import factorymanager.DriverType;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
 import utils.TestListeners;
 
 import java.util.concurrent.TimeUnit;
@@ -17,9 +15,16 @@ public class BaseTest {
     WebDriver driver;
 
     @BeforeMethod
-    public void setUp() {
+    @Parameters({"browser"})
+    public void setUp(@Optional("firefox") String browser) {
         DriverFactory driverFactory = new DriverFactory();
-        DriverManager driverManager = driverFactory.getManager(DriverType.CHROME);
+        DriverType type = null;
+        if (browser.equals("chrome")){
+            type = DriverType.CHROME;
+        } else if (browser.equals("firefox")){
+            type = DriverType.FIREFOX;
+        }
+        DriverManager driverManager = driverFactory.getManager(type);
         driverManager.createDriver();
         driverManager.setTimeout();
         driverManager.startMaximize();
@@ -33,6 +38,10 @@ public class BaseTest {
     public void removeImplicitlyWait(){
         driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     }
+    public void setTimeout() {
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    }
+
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         getDriver().quit();

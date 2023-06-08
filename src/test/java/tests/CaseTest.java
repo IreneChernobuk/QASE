@@ -10,10 +10,10 @@ import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
+
 @Epic("Creating new functionality")
 @Feature("Test case")
 @Story("Creating new test case")
-
 public class CaseTest extends BaseTest {
     private static final Logger LOGGER = LogManager.getLogger(CaseTest.class.getName());
 
@@ -24,8 +24,10 @@ public class CaseTest extends BaseTest {
         LoginHelper.login(getDriver());
         AllProjectsPage allProjectsPagePage = new AllProjectsPage(getDriver());
         LOGGER.info(String.format("Page %s initialized", AllProjectsPage.class.getName()));
+        removeImplicitlyWait();
         allProjectsPagePage.clickCelectedProject(ProjectName.QASE.getProjectName());
         LOGGER.info(String.format("Chose %s project", ProjectName.QASE));
+        setTimeout();
         ProjectPage projectPage = new ProjectPage(getDriver());
         LOGGER.info(String.format("Page %s initialized", ProjectPage.class.getName()));
         projectPage.clickNewCaseButton();

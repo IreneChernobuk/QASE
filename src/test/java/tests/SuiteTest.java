@@ -4,12 +4,15 @@ import constants.ProjectName;
 import data.PrepareSuiteData;
 import helpers.LoginHelper;
 import io.qameta.allure.*;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import pages.modal.SuiteModal;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
+import utils.RetryAnalyzer;
 
 @Epic("Creating new functionality")
 @Feature("Test suite")
@@ -17,7 +20,7 @@ import pages.*;
 public class SuiteTest extends BaseTest {
     private static final Logger LOGGER = LogManager.getLogger(SuiteTest.class.getName());
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class, invocationCount = 2, threadPoolSize = 2)
     @Severity(SeverityLevel.CRITICAL)
     @Description("Creating new test suite in 'QASE Project'")
     public void createNewTestSuiteTest() {

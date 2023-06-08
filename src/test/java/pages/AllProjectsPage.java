@@ -5,6 +5,8 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AllProjectsPage extends BasePage {
     private static final Logger LOGGER = LogManager.getLogger(AllProjectsPage.class.getName());
@@ -18,6 +20,8 @@ public class AllProjectsPage extends BasePage {
 
     @Step("Check that the button 'Create new project' is displayed")
     public boolean isCreateNewProjectButtonOnDisplayed() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CREATE_NEW_PROJECT_BUTTON));
         LOGGER.debug(String.format("Check that the button %s is displayed", CREATE_NEW_PROJECT_BUTTON));
         return driver.findElement(CREATE_NEW_PROJECT_BUTTON).isDisplayed();
     }

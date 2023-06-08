@@ -27,6 +27,7 @@ public class WorkspacePage extends BasePage {
     @Step("Fill 'Workspace' field")
     public void fillWorkspaceName() {
         LOGGER.info("input 'WORKSPACE_NAME_INPUT'");
+        driver.findElement(WORKSPACE_NAME_INPUT).clear();
         driver.findElement(WORKSPACE_NAME_INPUT).sendKeys(FakerMessageGenerator.generateName());
     }
 

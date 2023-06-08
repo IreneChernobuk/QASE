@@ -9,7 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class NewProjectPage extends BasePage {
-
     private static final Logger LOGGER = LogManager.getLogger(NewProjectPage.class.getName());
     private By PROJECT_NAME = By.id("project-name");
     private By PROJECT_CODE = By.id("project-code");
@@ -20,6 +19,7 @@ public class NewProjectPage extends BasePage {
     public NewProjectPage(WebDriver driver) {
         super(driver);
     }
+
     @Step("Fill new project form")
     public void fillNewProjectForm(NewProjectModal projectModel) {
         LOGGER.info("Input 'PROJECT_NAME'");
@@ -34,10 +34,5 @@ public class NewProjectPage extends BasePage {
         driver.findElement(PUBLIC_INPUT).click();
         LOGGER.debug(String.format("Attempt to click element: %s", CREATE_PROJECT_BUTTON));
         driver.findElement(CREATE_PROJECT_BUTTON).click();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

@@ -13,9 +13,7 @@ import utils.GenerateTestData;
 
 @Epic("Creating new functionality")
 @Feature("Project")
-
 public class ProjectTest extends BaseTest {
-
     private static final Logger LOGGER = LogManager.getLogger(ProjectTest.class.getName());
     String projectCode;
     String projectName;

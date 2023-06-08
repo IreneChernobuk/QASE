@@ -21,15 +21,17 @@ public class ProjectPage extends BasePage {
     public ProjectPage(WebDriver driver) {
         super(driver);
     }
+
     @Step("Click 'Settings 'button' on the in the list on the left")
     public void clickSettingsButton() {
         LOGGER.debug(String.format("Attempt to click element: %s", SETTINGS_BUTTON));
         driver.findElement(SETTINGS_BUTTON).click();
     }
+
     @Step("Get  title of project")
     public String receiveTitleProject() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE_PROJECT));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(NEW_SUITE_BUTTON));
         LOGGER.debug(String.format("Receive text of element: %s", TITLE_PROJECT));
         return driver.findElement(TITLE_PROJECT).getText();
     }
