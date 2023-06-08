@@ -24,10 +24,8 @@ public class CaseTest extends BaseTest {
         LoginHelper.login(getDriver());
         AllProjectsPage allProjectsPagePage = new AllProjectsPage(getDriver());
         LOGGER.info(String.format("Page %s initialized", AllProjectsPage.class.getName()));
-        removeImplicitlyWait();
         allProjectsPagePage.clickCelectedProject(ProjectName.QASE.getProjectName());
         LOGGER.info(String.format("Chose %s project", ProjectName.QASE));
-        setTimeout();
         ProjectPage projectPage = new ProjectPage(getDriver());
         LOGGER.info(String.format("Page %s initialized", ProjectPage.class.getName()));
         projectPage.clickNewCaseButton();

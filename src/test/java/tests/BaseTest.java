@@ -16,13 +16,15 @@ public class BaseTest {
 
     @BeforeMethod
     @Parameters({"browser"})
-    public void setUp(@Optional("firefox") String browser) {
+    public void setUp(@Optional("chrome") String browser) {
         DriverFactory driverFactory = new DriverFactory();
         DriverType type = null;
-        if (browser.equals("chrome")){
+        if (browser.equals("chrome")) {
             type = DriverType.CHROME;
-        } else if (browser.equals("firefox")){
+        } else if (browser.equals("firefox")) {
             type = DriverType.FIREFOX;
+        } else {
+            type = DriverType.REMOTE;
         }
         DriverManager driverManager = driverFactory.getManager(type);
         driverManager.createDriver();
@@ -35,11 +37,9 @@ public class BaseTest {
     public static WebDriver getDriver() {
         return threadLocalDriver.get();
     }
-    public void removeImplicitlyWait(){
+
+    public void removeImplicitlyWait() {
         driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-    }
-    public void setTimeout() {
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     @AfterMethod(alwaysRun = true)

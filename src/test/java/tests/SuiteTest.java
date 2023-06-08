@@ -20,7 +20,7 @@ import utils.RetryAnalyzer;
 public class SuiteTest extends BaseTest {
     private static final Logger LOGGER = LogManager.getLogger(SuiteTest.class.getName());
 
-    @Test(retryAnalyzer = RetryAnalyzer.class, invocationCount = 2, threadPoolSize = 2)
+    @Test //(retryAnalyzer = RetryAnalyzer.class, invocationCount = 2, threadPoolSize = 2)
     @Severity(SeverityLevel.CRITICAL)
     @Description("Creating new test suite in 'QASE Project'")
     public void createNewTestSuiteTest() {
