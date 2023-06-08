@@ -10,11 +10,11 @@ import org.openqa.selenium.WebDriver;
 import utils.FakerMessageGenerator;
 
 public class LoginPage extends BasePage {
-    private By EMAIL_INPUT = By.id("inputEmail");
-    private By PASSWORD_INPUT = By.id("inputPassword");
-    private By LOGIN_BUTTON = By.id("btnLogin");
-    private By MESSAGE_ERROR = By.xpath("//div[@data-qase-test = 'login-error']");
     private static final Logger LOGGER = LogManager.getLogger(LoginPage.class.getName());
+    private By EMAIL_INPUT = By.name("email");
+    private By PASSWORD_INPUT = By.name("password");
+    private By LOGIN_BUTTON = By.xpath("//span[text() = 'Sign in']/..");
+    private By MESSAGE_ERROR = By.xpath("//span[text() = 'These credentials do not match our records.']");
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -44,6 +44,7 @@ public class LoginPage extends BasePage {
         driver.findElement(LOGIN_BUTTON).click();
     }
 
+    @Step("Check the error alert is displayed")
     public boolean isErrorMessageOnDisplayed() {
         LOGGER.debug("Check the error message is displayed");
         return driver.findElement(MESSAGE_ERROR).isDisplayed();
