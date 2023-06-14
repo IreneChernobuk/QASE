@@ -3,7 +3,6 @@ package factorymanager;
 
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariOptions;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;

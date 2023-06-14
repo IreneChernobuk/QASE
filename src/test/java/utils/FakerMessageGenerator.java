@@ -17,7 +17,7 @@ public class FakerMessageGenerator {
     }
 
     public static String generateCodeForProject() {
-        return new Faker().lorem().characters(2, 10).toUpperCase();
+        return new Faker().lorem().characters(2, 9).toUpperCase();
     }
 
     public static String generateText() {
@@ -25,10 +25,13 @@ public class FakerMessageGenerator {
     }
 
     public static Integer generateSeverity() {
-        return new Faker().number().numberBetween(1, 6);
+        return new Faker().number().numberBetween(1, 7);
     }
 
     public static Integer generatePriority() {
-        return new Faker().number().numberBetween(1, 3);
+        return new Faker().number().numberBetween(1, 4);
+    }
+    public static String generateName() {
+        return new Faker().name().fullName();
     }
 }

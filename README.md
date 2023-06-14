@@ -1,38 +1,39 @@
-  Это тестовый проект, целью которого является развить навыки в автоматизации процесса тестирования пользовательского
-интерфейса веб-приложения *qase.io* на языке Java с использованием поддержки **Maven** и на базе
-  **Selenium WebDriver**.
+  This is a test project, the purpose of which is to develop skills in automating testing process of the
+ user interface *qase.io* veb application in the **Java** and using support **Maven** and **Selenium WebDriver**.
+  
 ***
-  В качестве патерна для организации кода проекта выбран **Page Object**. Это позволяет вынести элементы страницы,
-а также методы в отдельный класс.
+  As a pattern for the organization of the project code I chose **Page Object**. This allowed me to put the page 
+  elements and methods in separate class.
 ***
-  В данном проекте в качестве фрейфорка по запуску тестов и их организации выбран **TestNG**. 
-      С помощью аннотаций *TestNG* продуман запуск в параллель и структурирование тестов:
-      _конторль порядка выполнения, создания групп, описание тестовых методов._
+  In this project, as a framework for running tests and organizing them, I chose **TestNG**. 
+      With the help of annotations *TestNG*, I thought about running tests in parallel and structuring them:
+      _control of the order of execution, creating groups, description of the test methods._
 ***
-В проекте было принято решение писать писать в лог дополнительную текстовую информацию, для чего использовалась
-специальная библиотека **log4j**.  
+In the project, I decided to write additional text information to the log, for with i used special library **log4j**.  
 ***
-Тестовые данные подготавливались с помощью JavaFaker и Builder Pattern.
+I prepared the text data using JavaFaker и Builder Pattern.
 ***
-Предусмотрен запуск автотестов с помощью Allure Report.
+I provided for running tests using Allure Report.
 ***
-В тестовом проекте предусмотрен запуск тестов из нескольких браузеров: _Chrome, Firefox, Remote (macOS 13,
-browserVersion - 16)_ на облачном сервере SauseLabs.
-Данная задача была решена с помощью реализации GOF Design-patterns-Factory.
-Управление WebDriver осуществляется с помощью библиотеки Java WebDriverManager полностью автоматизированным способом.
+In this test project, I provided for running tests from several browsers: _Chrome, Firefox, Remote (macOS 13,
+browserVersion - 16)_ on a cloud server SauseLabs.
+I solved this challenge with the help of GOF Design-patterns-Factory.
+Management WebDriver realize using the library Java WebDriverManager automated method.
 ***
-В проекте предусмотрен запуск тестов с помощью XML Test Suites. Это позволило выполнить гибкую настройку тестов, 
-разделение тестов на группы и запуск их в параллель.
+In the project, I provided for running tests using XML Test Suites. This allowed me to flexibly configure tests, 
+splitting tests into groups and running them in parallel.
 ***
-Для анализа результатов теста на предмет перзапуска создан класс RetryAnalyzer. В данном случае тестовый метод будет 
-запускаться 3 раза в случае неудачного его прохождения.
+To analyze the test results for restarting, I created class RetryAnalyzer. In this case, if the test fails, 
+it will run 3 times.
 ***
-В качестве инстумента тестирования поддерживающего инфраструктуру BDD выбран Cucumber. 
+I chose Cucumber as a testing tool that supports BDD infrastructure. 
 ***
-Инстументом CI является Jenkins: сборки продукта, запуска тестов и генерация репорта.
+Tool CI is Jenkins: project build, running tests and и generating report.
+***
+I developed 10 API tests for the main methods using library RestAssured
 
 
-# **_Для тестирования данного проекта составлены 10 тест-кейсов:_**
+# **_I have compiled 10 test case for testing this project:_**
 1. **Log in valid data**
 * Description: User log in with valid data
 * Severity: Blocker
@@ -142,7 +143,6 @@ browserVersion - 16)_ на облачном сервере SauseLabs.
    * Enter letters in the 'Action' field
    * Enter characters  in the 'Input data' field
    * Enter characters  in the 'Expected result' field
-   * Click picture and upload attachment
    * Click button 'Create'
 * Expected result: appeared title step on "Shared steps page"
 
@@ -192,6 +192,4 @@ browserVersion - 16)_ на облачном сервере SauseLabs.
    * Click button 'Settings' in the list on the left
    * Enter letters in the 'Workspace name' field
    * Click button 'Update setting'
-   * Choose type in 'Severity' field
-   * Click button 'Create defect'
 * Expected result: in the list on the left updated Workspace name
