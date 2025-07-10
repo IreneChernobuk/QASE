@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 public class ProjectPage extends BasePage {
     private static final Logger LOGGER = LogManager.getLogger(ProjectPage.class.getName());
     private By TITLE_PROJECT = By.xpath("//div[@id ='application-content']//h1");
@@ -30,7 +32,7 @@ public class ProjectPage extends BasePage {
 
     @Step("Get  title of project")
     public String receiveTitleProject() {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(NEW_SUITE_BUTTON));
         LOGGER.debug(String.format("Receive text of element: %s", TITLE_PROJECT));
         return driver.findElement(TITLE_PROJECT).getText();

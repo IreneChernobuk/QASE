@@ -5,6 +5,6 @@ import java.util.List;
 
 public class AutomationStatusTestCase {
     public static List<String> getAutomationStatus() {
-        return Arrays.asList("Not automated", "To be automated", "Automated");
+        return Arrays.asList("Manual", "Automated");
     }
 }
